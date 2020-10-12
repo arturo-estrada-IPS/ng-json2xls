@@ -1,0 +1,34 @@
+<div class="container mt-3" *ngIf="customers$ | async as customers">
+  <div class="text-right py-2">
+    <button
+      [appExport]="customers"
+      [fileName]="'customers'"
+      class="btn btn-outline-primary mr-2"
+    >
+      Export
+    </button>
+    <button [appCopy]="table" class="btn btn-outline-primary">Copy</button>
+  </div>
+  <table class="table table-stripped" #table>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Zipcode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers; let idx = index">
+        <td>{{ idx + 1 }}</td>
+        <td>{{ customer.firstName }}</td>
+        <td>{{ customer.lastName }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.address }}</td>
+        <td>{{ customer.zipcode }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
